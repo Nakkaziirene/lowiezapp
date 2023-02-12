@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="static/vendors/owl-carousel/css/owl.carousel.min.css">
+  		<link rel="stylesheet" href="stactic/vendors/owl-carousel/css/owl.theme.default.css">
+  		<link rel="stylesheet" href="static/vendors/mdi/css/materialdesignicons.min.css">
+ 		 <link rel="stylesheet" href="static/vendors/aos/css/aos.css">
+  		<link rel="stylesheet" href="static/css/style.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+		<style type="text/css">
+			.popup {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.7);
+				top: 0;
+				left: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 2;
+				visibility: hidden;
+				opacity: 0;
+				transition: all 0.3s ease-in-out;
+			}
+			.popup.active {
+				visibility: visible;
+				opacity: 1;
+			}
+			.popup .popup-content {
+				width: 500px;
+				background-color: #fff;
+				padding: 20px;
+				border-radius: 5px;
+				text-align: center;
+			}
+			.popup .popup-content h2 {
+				margin-top: 0;
+				color: #333;
+			}
+			.popup .popup-content .close-btn {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				font-size: 20px;
+				cursor: pointer;
+				color: #333;
+			}
+			.popup .popup-content .close-btn:hover {
+				color: #f44336;
+			}
+			.popup .popup-content p {
+				color: #333;
+			}
+			.popup .popup-content a {
+				display: inline-block;
+				margin: 10px 0;
+				padding: 10px 25px;
+				background-color: #f44336;
+				color: #fff;
+				border-radius: 5px;
+				text-decoration: none;
+			}
+			.popup .popup-content a:hover {
+				background-color: #f44336;
+			}
+			a{
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #0f72e5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 0;
+}
+		</style>
+	</head>
+	<body>
+		<div class="popup">
+
+			<h2>Great, Your Task has been added</h2>
+			<p>
+				You can now manage your tasks by clicking the button below.
+			</p>
+			<a href="{{ url_for('home') }}">Manage Your Tasks</a>
+		</div>
+	
+		<script src="static/vendors/jquery/jquery.min.js"></script>
+		<script src="static/vendors/bootstrap/bootstrap.min.js"></script>
+		<script src="static/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+		<script src="static/vendors/aos/js/aos.js"></script>
+		<script>
+			window.addEventListener("load", function(){
+    		setTimeout(
+        	function open(event){
+            document.querySelector(".popup").style.display = "block";
+       		 },
+       		 1000
+    		)
+			});
+
+
+			document.querySelector("#close").addEventListener("click", function(){
+    		document.querySelector(".popup").style.display = "none";
+			});
+		</script>
+
+	</body>
+</html>

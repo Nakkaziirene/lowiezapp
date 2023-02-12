@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+	
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="static/vendors/owl-carousel/css/owl.carousel.min.css">
+  		<link rel="stylesheet" href="stactic/vendors/owl-carousel/css/owl.theme.default.css">
+  		<link rel="stylesheet" href="static/vendors/mdi/css/materialdesignicons.min.css">
+ 		 <link rel="stylesheet" href="static/vendors/aos/css/aos.css">
+  		<link rel="stylesheet" href="static/css/style.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+	</head>
+
+	<body class="loggedin">
+		<nav class="navtop">
+			<div>
+				<h1>Lowiezapp</h1>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			</div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+		<script src="static/vendors/jquery/jquery.min.js"></script>
+		<script src="static/vendors/bootstrap/bootstrap.min.js"></script>
+		<script src="static/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+		<script src="static/vendors/aos/js/aos.js"></script>
+		<script src="static/js/landingpage.js"></script>
+	</body>
+</html>

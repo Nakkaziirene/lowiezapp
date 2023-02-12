@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h2>Welcome back, {{ username }}!</h2>
+<!--Button to add tasks-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+  Add Task / Event </button>
+ 
+ <!--Modal to add tasks--> 
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="taskModalLabel">Add a Task/Event</h4>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('add_task') }}" method="post">
+            <div class="form-group">
+            <label for="task">Task:</label>
+            <input type="text" name="task" id="task" class="form-control" required>
+            </div>
+            <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+            <label for="time">Due Time:</label>
+            <input type="time" name="time" id="time" class="form-control" required>
+            </div>
+            <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" name="status" id="status">
+              <option value="Started">Started</option>
+              <option value="Not Started">Not started</option>
+              <option value="Completed">Completed</option>
+            </select>
+            </div>
+        <button type="submit" class="btn btn-success">Create Task</button>
+        </form>
+            <div class="modal-footer">
+            </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+        
+
+<!--Container with table to list tasks-->
+<div class="container table-hover table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Due Time</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task.taskname }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.date }}</td>
+        <td>{{ task.duetime }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <a href="{{ url_for('edit_task', id=task.id) }}" target="_blank" class="bi bi-pencil-square"></a>
+          <a href="{{ url_for('delete_task', id=task.id) }}" target="_blank" class="bi bi-trash3-fill"></a>
+          <a href="{{ url_for('add_to_calendar', id=task.id) }}"target="_blank"  class="bi bi-calendar2-check"></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="static/vendors/jquery/jquery.min.js"></script>
+  <script src="static/vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="static/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+  <script src="static/vendors/aos/js/aos.js"></script>
+  <script src="static/js/landingpage.js"></script>
+
+{% endblock %}
